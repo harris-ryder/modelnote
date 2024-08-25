@@ -77,9 +77,6 @@ const Editor = () => {
           </Bounds>
           <OrbitControls ref={ref} />
           <Environment preset="city" />
-          <GizmoHelper alignment="bottom-center" name="cube" margin={[0, 80]}>
-            <GizmoViewcube />
-          </GizmoHelper>
           <OrbitControls makeDefault />
         </Canvas>
         <GUI />
