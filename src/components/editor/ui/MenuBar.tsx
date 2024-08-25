@@ -26,7 +26,7 @@ function MenuBar() {
       <div className="bg-sky-200 p-2 h-full rounded shadow-level1 border border-sky-300 flex flex-col gap-2">
         <Button className='relative group' size="child" onClick={() => navigate('/dashboard')}
         >
-          <img src="logo.svg" className="h-6 w-6" alt="My SVG" />
+          <img src="/logo.svg" className="h-6 w-6" alt="My SVG" />
           <p
             className={`absolute right-0 text-slate-500 translate-x-[100%] opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap overflow-hidden text-ellipsis`}
             style={{ right: '-50%' }}
