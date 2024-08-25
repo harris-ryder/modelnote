@@ -114,7 +114,7 @@ export function Modal() {
 
             <p className="text-stone-400">or</p>
 
-            <Button onClick={() => navigate(`/editor/${'250108c9-73e9-4e74-b2e8-a4af6baebb47'}`)} size="lg">
+            <Button onClick={() => navigate(`/editor/${import.meta.env.VITE_EXAMPLE_PROJECT_URL}`)} size="lg">
               {" "}
               Try Example
             </Button>
