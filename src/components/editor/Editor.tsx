@@ -5,8 +5,6 @@ import {
   Bounds,
   useBounds,
   Environment,
-  GizmoHelper,
-  GizmoViewcube,
 } from "@react-three/drei";
 import useEditorStore from "./EditorStore";
 import SceneModels from "./threejs/SceneModels";
