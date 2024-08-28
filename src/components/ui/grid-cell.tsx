@@ -140,7 +140,8 @@ const GridCell: FC<ViewProjectData> = (props) => {
         <div className='relative flex-1 group'>
           <div className='absolute pointer-events-auto flex flex-col justify-between left-0 top-0 right-0 bottom-0 p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500'>
             <IconButton onClick={linkToClipboard} className='relative group/btn' icon='Copy' size='md' variant='ghost'><p className='absolute opacity-0 group-hover/btn:opacity-80 right-0 translate-x-full text-xs text-slate-700 whitespace-nowrap'>Share link</p></IconButton >
-            <ToggleSwitch onClick={() => handleSwitchChange(!isPublic)} className='' leftLabel='Anyone' rightLabel='Invite only' isChecked={isPublic} size='sm' ></ToggleSwitch>
+            {is_owner && <ToggleSwitch onClick={() => handleSwitchChange(!isPublic)} className='' leftLabel='Anyone' rightLabel='Invite only' isChecked={isPublic} size='sm' ></ToggleSwitch>}
+
           </div>
 
           <div className="absolute p-2 left-0 right-0 top-0 bottom-0 pointer-events-none opacity-100 group-hover:opacity-0 flex flex-col justify-end transition-opacity duration-500">
