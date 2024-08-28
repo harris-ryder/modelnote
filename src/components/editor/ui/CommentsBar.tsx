@@ -40,7 +40,7 @@ function CommentsBar() {
   return (
     <div className="flex flex-col w-[320px] h-full">
       <div
-        className={`bg-sky-200 bg-opacity-50 border border-sky-200 pointer-events-auto p-2 rounded shadow-level1 transition-all duration-500 ease-in-out w-full ${showComments ? 'flex-1' : 'h-10'} overflow-hidden`}
+        className={`bg-sky-200 bg-opacity-50 border border-sky-200 pointer-events-auto p-2 rounded shadow-level1 transition-all duration-500 ease-in-out w-full ${showComments ? 'flex-1' : 'h-11'} overflow-hidden`}
       >
         <div className="flex gap-8 justify-between items-center mb-2">
           <MessageSquarePlus

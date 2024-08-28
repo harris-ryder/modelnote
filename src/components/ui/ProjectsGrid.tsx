@@ -1,6 +1,6 @@
 import { FC, useEffect } from 'react';
 import { useApiStore } from '../../store/api-store';
-import GridCell from './GridCell'
+import GridCell from './grid-cell'
 
 const ProjectsGrid: FC = () => {
   const fetchProjects = useApiStore((s) => s.fetchProjects);

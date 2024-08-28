@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import DemoPanel from '../components/demo/DemoPanel';
 import { useApiStore } from '../store/api-store';
-import Navbar from '../components/ui/NavBar';
+import Navbar from '../components/ui/nav-bar';
 
 function HomePage() {
   const user = useApiStore((s) => s.user);

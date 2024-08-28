@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Button from '../../ui/Button';
-import { UserRoundPlus, X } from 'lucide-react';
+import Button from '../../ui/standard-button';
+import { X } from 'lucide-react';
 import { Switch } from 'antd';
 import useEditorStore from '../EditorStore';
 import EmailButton from '../../ui/EmailButton';
@@ -112,7 +112,7 @@ const ShareBar: React.FC = () => {
 
               <Button
                 variant='default'
-                size="sm"
+                size="lg"
                 className="w-full"
                 onClick={linkToClipboard}>
                 Copy Link
@@ -120,9 +120,8 @@ const ShareBar: React.FC = () => {
             </div>
           </div >
         ) : (
-          <Button onClick={() => setShareTool(true)} variant="light" className="shadow-level1 px-8 pointer-events-auto">
+          <Button onClick={() => setShareTool(true)} size='lg' variant="light" icon='UserRoundPlus' className="shadow-level1 px-8 pointer-events-auto">
             Share
-            <UserRoundPlus className="ml-2 h-4 w-4" />
           </Button>
         )}
       </>
@@ -202,7 +201,7 @@ const ShareBar: React.FC = () => {
                   <hr className={`border-t border-sky-400 w-full`} />
                 </div>
                 <input
-                  className='border px-4 border-sky-300 h-10 cursor-text rounded-full no-focus-outline w-[100%]'
+                  className='border px-4 border-sky-300 h-10 cursor-text rounded-md no-focus-outline w-[100%]'
                   type="text"
                   placeholder='someone@gmail.com'
                   value={inputEmail}
@@ -214,9 +213,8 @@ const ShareBar: React.FC = () => {
           </div>
         </div>
       ) : (
-        <Button onClick={() => setShareTool(true)} variant="light" className="shadow-level1 px-8 pointer-events-auto">
+        <Button onClick={() => setShareTool(true)} size='lg' icon='UserRoundPlus' variant="light" className="shadow-level1 px-8 pointer-events-auto">
           Share
-          <UserRoundPlus className="ml-2 h-4 w-4" />
         </Button>
       )}
     </>

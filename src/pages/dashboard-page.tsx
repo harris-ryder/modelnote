@@ -1,8 +1,7 @@
-
 import { useEffect, useState, useRef } from 'react';
 import { Modal } from "../components/ui/NewProjectModal";
 import ProjectsGrid from '../components/ui/ProjectsGrid';
-import Navbar from '../components/ui/NavBar';
+import Navbar from '../components/ui/nav-bar';
 import useEditorStore from '../components/editor/EditorStore';
 
 function DashboardPage() {

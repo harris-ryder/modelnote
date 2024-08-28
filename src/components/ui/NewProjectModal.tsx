@@ -3,7 +3,7 @@ import { useRef, useState, ChangeEvent } from "react";
 //   returnArrayOfGeometries,
 //   generateModels,
 // } from "../../lib/utils/fileLoader";
-import Button from "../ui/Button";
+import Button from "./standard-button";
 import toast, { Toaster } from "react-hot-toast";
 import JSZip from "jszip";
 import { useApiStore } from "../../store/api-store";
@@ -103,7 +103,7 @@ export function Modal() {
               type="file"
               ref={fileInput}
               onChange={fileUpload}
-              style={{ display: "none" }}
+              style={{ display: "none", height: '2.75rem' }}
               multiple={true}
               accept=".obj,.stl,.bin,.fbx,.glb,.gltf"
             />
@@ -124,13 +124,13 @@ export function Modal() {
         {(modalState === "nameUpload") && (
           <div className="flex gap-2">
             <input
-              className="border border-sky-300 p-2 min-w-64 h-10 cursor-text rounded no-focus-outline w-full"
+              className="border border-sky-300 p-2 min-w-64 h-11 cursor-text rounded no-focus-outline w-full"
               type="text"
               placeholder="Enter project name"
               value={projectName}
               onChange={handleInputChange}
             />
-            <Button isLoading={isLoading} onClick={submitProject}>Submit</Button>
+            <Button isLoading={isLoading} size='lg' onClick={submitProject}>Submit</Button>
           </div>
         )}
 

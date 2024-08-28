@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useEditorStore from '../EditorStore';
-import Button from '../../ui/Button';
+import Button from '../../ui/standard-button';
 import { useApiStore } from '../../../store/api-store';
 
 const NewComment: React.FC = () => {
