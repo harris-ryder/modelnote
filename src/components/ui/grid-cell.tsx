@@ -136,7 +136,6 @@ const GridCell: FC<ViewProjectData> = (props) => {
           </div>
         )}
 
-
         <div className='relative flex-1 group'>
           <div className='absolute pointer-events-auto flex flex-col justify-between left-0 top-0 right-0 bottom-0 p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500'>
             <IconButton onClick={linkToClipboard} className='relative group/btn' icon='Copy' size='md' variant='ghost'><p className='absolute opacity-0 group-hover/btn:opacity-80 right-0 translate-x-full text-xs text-slate-700 whitespace-nowrap'>Share link</p></IconButton >
@@ -152,7 +151,6 @@ const GridCell: FC<ViewProjectData> = (props) => {
               {is_owner && is_public && <Button size='xs' variant='green'>public - anyone can access</Button>}
             </div>
           </div>
-
 
           <img
             src={signedUrl ? signedUrl : './placeholder.png'}

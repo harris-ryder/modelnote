@@ -14,7 +14,7 @@ function DemoPanel() {
   const commentsContainer = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="flex fixed top-24 left-2 right-2 bottom-2 gap-2 rounded-md ">
+    <div className="flex mt-24 px-2 gap-2 rounded-md" style={{ height: 'calc(100% - 6rem)' }}>
       <Canvas
         className="flex-4 rounded-md border border-sky-200 shadow-level2"
         shadows
