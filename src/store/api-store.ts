@@ -34,7 +34,7 @@ export const useApiStore = create<ApiStoreState>((set, get) => ({
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `http://modelnote.io/dashboard`,
+        redirectTo: `${window.location.origin}/dashboard`,
       },
     }) as { data: any; error: any };
 
@@ -42,7 +42,6 @@ export const useApiStore = create<ApiStoreState>((set, get) => ({
       console.error('Login error:', error);
     } else {
       set({ user: data?.user, userPicUrl: data?.user?.user_metadata?.picture || null });
-      get().bookmarkWelcomeProject()
     }
   },
 
@@ -63,9 +62,13 @@ export const useApiStore = create<ApiStoreState>((set, get) => ({
     console.log("User is", user);
     set({ user, userPicUrl: user?.user_metadata?.avatar_url });
     console.log("Authenticated", user, get().userPicUrl);
+    if (user) {
+      await get().bookmarkWelcomeProject();
+    }
     return user !== null;
   },
   bookmarkWelcomeProject: async () => {
+    console.log("is this working?")
     const createdAt = new Date(get().user.created_at);
     const lastSignInAt = new Date(get().user.last_sign_in_at);
     const timeDifference = Math.abs(lastSignInAt.getTime() - createdAt.getTime());
