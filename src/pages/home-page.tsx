@@ -146,7 +146,7 @@ function HomePage() {
                   <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
                   <ul className="text-gray-500 dark:text-gray-400 font-medium">
                     <li className="mb-4">
-                      <a href="#" className="hover:underline">Privacy Policy</a>
+                      <Link to="/privacy-policy" className="hover:underline">Privacy Policy</Link>
                     </li>
                     <li>
                       <Link to="/tos" className="hover:underline">Terms &amp; Conditions</Link>
