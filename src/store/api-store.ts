@@ -74,7 +74,7 @@ export const useApiStore = create<ApiStoreState>((set, get) => ({
     const timeDifference = Math.abs(lastSignInAt.getTime() - createdAt.getTime());
     const isFirstTimeLogin = timeDifference <= 60000; // 60000 milliseconds = 1 minute
 
-    if (!isFirstTimeLogin) {
+    if (isFirstTimeLogin) {
       // Check if a bookmark already exists
       const { data, error } = await supabase
         .from("view_bookmarks")
