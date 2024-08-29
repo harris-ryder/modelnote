@@ -117,7 +117,24 @@ const GridCell: FC<ViewProjectData> = (props) => {
         }}
       />
 
+
+
+
       <div className="flex flex-col relative p-2 max-w-[500px] h-[300px] bg-sky-200 bg-opacity-50 border border-sky-200 rounded-md hover:transform hover:translate-y-[-2px] hover:shadow-level2 transition-all duration-200">
+
+
+        <div className="flex flex-wrap gap-1 mb-2">
+          {!is_owner && !is_public && <Button size='xs' variant='pink' className="truncate max-w-full whitespace-nowrap" title="shared with you">shared with you</Button>}
+          {!is_owner && is_public && (
+            <>
+              <Button size='xs' variant='green' className="truncate flex-grow-0 text-ellipsis whitespace-nowrap" title="public">public</Button>
+              <Button size='xs' variant='pink' className="truncate flex-grow-0 text-ellipsis whitespace-nowrap" title="shared with you">shared with you</Button>
+            </>
+          )}
+          {is_owner && !is_public && <Button size='xs' className="truncate max-w-full text-ellipsis whitespace-nowrap" title="Invite only">Invite only</Button>}
+          {is_owner && is_public && <Button size='xs' variant='green' className="truncate max-w-full text-ellipsis whitespace-nowrap" title="public - anyone can access">public - anyone can access</Button>}
+        </div>
+
         <div className='flex items-center'>
           <h1 onClick={() => window.open(`/editor/${id}`, '_blank')} className='font-bold flex-1 cursor-pointer'>{name}</h1>
           <IconButton onClick={() => { setDisplaySettings(!displaySettings) }} icon='EllipsisVertical' size='sm' variant='ghost' />
@@ -143,14 +160,6 @@ const GridCell: FC<ViewProjectData> = (props) => {
 
           </div>
 
-          <div className="absolute p-2 left-0 right-0 top-0 bottom-0 pointer-events-none opacity-100 group-hover:opacity-0 flex flex-col justify-end transition-opacity duration-500">
-            <div>
-              {!is_owner && !is_public && <Button size='xs' variant='pink'>shared with you</Button>}
-              {!is_owner && is_public && <Button size='xs' variant='green'>public</Button>}
-              {is_owner && !is_public && <Button size='xs'>Invite only</Button>}
-              {is_owner && is_public && <Button size='xs' variant='green'>public - anyone can access</Button>}
-            </div>
-          </div>
 
           <img
             src={signedUrl ? signedUrl : './placeholder.png'}
