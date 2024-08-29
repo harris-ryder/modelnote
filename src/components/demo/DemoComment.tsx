@@ -28,7 +28,7 @@ const DemoComment: FC<DemoCommentProps> = ({ comment, id, date, name, parent, cl
 
   return (
     <div
-      className={`flex flex-col mb-2 gap-2 rounded p-4 ${selected === id ? 'motion-reduce:animate-pulse bg-pink-300' : 'bg-sky-200'} ${className}`}
+      className={`flex flex-col mb-2 gap-2 rounded-md p-4 ${selected === id ? 'motion-reduce:animate-pulse bg-pink-300' : 'bg-sky-200'} ${className}`}
       ref={commentRef}
       onClick={() => updateSelected(id)}
     >

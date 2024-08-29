@@ -17,7 +17,7 @@ function HomePage() {
 
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 h-10 bg-white z-10">
+      <div className="fixed top-0 left-0 right-0 h-10 bg-white z-50">
       </div>
       <Navbar
         route="Home"

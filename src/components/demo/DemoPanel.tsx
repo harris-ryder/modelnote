@@ -10,11 +10,31 @@ import { ChevronRight } from "lucide-react";
 import { DemoBuilding } from "./threejs/DemoBuilding";
 import DemoComment from "./DemoComment";
 
+
+
+const apiImgs = ["https://api.dicebear.com/9.x/notionists/svg?seed=Mia", "https://api.dicebear.com/9.x/notionists/svg?seed=Midnight", "https://api.dicebear.com/9.x/notionists/svg?seed=Kitty"]
+
 function DemoPanel() {
   const commentsContainer = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="flex mt-24 px-2 gap-2 rounded-md" style={{ height: 'calc(100% - 6rem)' }}>
+    <div className="relative flex mt-24 px-2 gap-2 rounded-md" style={{ height: 'calc(100% - 6.5rem)' }}>
+
+
+      <div className="absolute left-2 top-2 hidden md:block w-[300px]">
+        <img src='./actionText.png' alt="Action Text" />
+      </div>
+
+      <div className="absolute left-6 top-4 w-[200px]">
+        <div className="relative h-16">
+          <img src={apiImgs[0]} alt="Image 1" className="absolute left-0 w-10 h-10 z-30 rounded-full border-2 border-red-400 bg-white" />
+          <img src={apiImgs[1]} alt="Image 2" className="absolute left-5 w-10 h-10 z-20 rounded-full border-2 border-green-400 bg-white" />
+          <img src={apiImgs[2]} alt="Image 3" className="absolute left-10 w-10 h-10 z-10 rounded-full border-2 border-blue-400 bg-white" />
+        </div>
+      </div>
+
+
+
       <Canvas
         className="flex-4 rounded-md border border-sky-200 shadow-level2"
         shadows
@@ -33,7 +53,7 @@ function DemoPanel() {
           position={[10, 100, 10]}
           castShadow
         />
-        <Bounds fit clip observe margin={1.0} maxDuration={1}>
+        <Bounds fit clip observe margin={1.1} maxDuration={1}>
           <DemoBuilding />
         </Bounds>
         <Environment preset="city" />
@@ -75,7 +95,7 @@ function DemoPanel() {
           >
             <DemoComment
               parent={commentsContainer}
-              comment="Welcome to model note! You can add models, edit them and add comments using pins!"
+              comment="Share your designs with people!"
               name="Team"
               date="2:44pm 30 Apr"
               id="1"
@@ -83,7 +103,7 @@ function DemoPanel() {
             />
             <DemoComment
               parent={commentsContainer}
-              comment="You can tag parts of your model you want to highlight and attach them to a comment like this one!"
+              comment="You add pins to your model and attach them to a comment like this one!"
               name="Team"
               date="4:34pm 14 Apr"
               id="2"
@@ -99,7 +119,7 @@ function DemoPanel() {
             />
             <DemoComment
               parent={commentsContainer}
-              comment="Still not making sense? Take Google Docs and apply it to 3D design thats ModelNote!"
+              comment="Its like a google doc file, where you can leave comments in a shared workplace."
               name="Team"
               date="1:24pm 3 March"
               id="4"
