@@ -3,6 +3,7 @@ import DemoPanel from "../components/demo/DemoPanel";
 import { useApiStore } from "../store/api-store";
 import Navbar from "../components/ui/nav-bar";
 import Button from "../components/ui/standard-button";
+import { Link } from "react-router-dom";
 
 function HomePage() {
   const user = useApiStore((s) => s.user);
@@ -148,7 +149,7 @@ function HomePage() {
                       <a href="#" className="hover:underline">Privacy Policy</a>
                     </li>
                     <li>
-                      <a href="#" className="hover:underline">Terms &amp; Conditions</a>
+                      <Link to="/tos" className="hover:underline">Terms &amp; Conditions</Link>
                     </li>
                   </ul>
                 </div>
