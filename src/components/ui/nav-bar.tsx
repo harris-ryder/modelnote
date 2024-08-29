@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import Button from './standard-button';
 import { useApiStore } from '../../store/api-store';
 import { useNavigate } from 'react-router-dom';
@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 export type ButtonAction = {
   name: string;
   function: (...args: any[]) => any;
+  className?: string;
 };
 
 export type SmartButton = 'login' | 'logout' | 'dashboard' | 'profile' | ButtonAction;
@@ -34,33 +35,38 @@ const Navbar: FC<NavbarProps> = ({ route, buttons, isLoggedIn }) => {
     login: <Button onClick={loginWithGoogle} icon='Google'>Login </Button>,
     logout: <Button onClick={handleLogout}>Logout </Button>,
     dashboard: <Button onClick={() => navigate('/dashboard')} >Dashboard </Button>,
-    profile: <Button >Profile </Button>,
+    profile: <Button>Profile </Button>,
   };
 
   // Function to handle custom ButtonAction types if they are objects not strings
   const renderCustomButton = (button: ButtonAction) => (
-    <Button key={button.name} onClick={button.function}>
+    <Button key={button.name} className={button.className} onClick={button.function}>
       {button.name}
     </Button>
   );
 
   return (
-    <nav className='fixed left-2 right-2 top-2 rounded-md border border-sky-200 bg-sky-100 h-20 p-4 flex items-center justify-between shadow-level2 z-[100]'>
-      <div className='flex gap-2 items-center justify-center'>
-        <img onClick={() => navigate('/')} src="/logo.svg" alt="Logo" style={{ width: '40px', marginRight: '8px' }} />
-        <h1 className='text-xl font-poppins font-semibold'>ModelNote</h1>
-        {route && (
-          <p className="border-l-2 border-gray-800 pl-2">{route}</p>
-        )}
-      </div>
+    <>
+      <div className="fixed top-0 left-0 right-0 h-10 bg-white z-50 hide sm:block" />
+      <nav className='relative sm:fixed left-2 right-2 top-2 rounded-md border border-sky-200 bg-sky-100 h-auto sm:h-20 gap-2 flex-col sm:flex-row p-4 flex items-center justify-between shadow-level2 z-[100] max-w-[calc(100%-1rem)]'>
+        <div className='flex gap-2 items-center justify-center'>
+          <img onClick={() => navigate('/')} src="/logo.svg" alt="Logo" style={{ width: '40px', marginRight: '8px' }} />
+          <h1 className='text-xl font-poppins font-semibold'>ModelNote</h1>
+          {route && (
+            <p className="border-l-2 border-gray-800 pl-2">{route}</p>
+          )}
+        </div>
 
-      <div className='flex items-center gap-4'>
-        {buttons.map((button) => (
-          typeof button === 'string' ? buttonMap[button] : renderCustomButton(button)
-        ))}
-        {isLoggedIn && <img src={userPicUrl ? userPicUrl : './placeholder.svg'} className='rounded-full h-10 w-10 border-2 p-1 border-sky-300' alt="My SVG" />}
-      </div>
-    </nav>
+        <div className='flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto'>
+          {buttons.map((button, index) => (
+            typeof button === 'string'
+              ? buttonMap[button] && React.cloneElement(buttonMap[button], { key: index, className: 'w-full sm:w-auto' })
+              : renderCustomButton(button)
+          ))}
+          {isLoggedIn && <img src={userPicUrl ? userPicUrl : './placeholder.svg'} className='rounded-full h-10 w-10 border-2 p-1 border-sky-300 hidden sm:inline-block' alt="User profile" />}
+        </div>
+      </nav>
+    </>
   );
 };
 

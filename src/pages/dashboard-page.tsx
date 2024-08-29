@@ -35,13 +35,13 @@ function DashboardPage() {
       <Navbar
         route="Dashboard"
         buttons={[
-          { name: 'New Project', function: () => setStartProject(true) },
+          { name: 'New Project', function: () => setStartProject(true), className: 'w-full sm:w-auto' },
           'logout'
         ]}
         isLoggedIn={true}
       />
 
-      <div className="fixed top-20 left-0 right-0 bottom-0 z-0">
+      <div className="sm:fixed top-20 left-0 right-0 bottom-0 z-0">
         <ProjectsGrid />
       </div>
 

@@ -17,8 +17,6 @@ function HomePage() {
 
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 h-10 bg-white z-50">
-      </div>
       <Navbar
         route="Home"
         buttons={[user ? "dashboard" : "login"]}
@@ -38,9 +36,10 @@ function HomePage() {
 
 
       <div className="p-2">
-        <div className="flex border border-sky-200 rounded-md">
-          <div className="flex-1  h-[400px] text-lg flex flex-col gap-2 items-center justify-center">
-            <h1 className="text-2xl font-poppins font-semibold">
+        <div className="flex flex-col sm:flex-row border border-sky-200 rounded-md">
+          <div className="order-2 sm:order-1 flex-1 h-[400px] text-lg flex flex-col gap-2 items-center justify-center m-4">
+
+            <h1 className="text-xl sm:text-2xl font-poppins font-semibold text-center">
               Upload CAD files and generate links instantly.
             </h1>
             <div className="flex gap-2 justify-center items-center">
@@ -48,12 +47,11 @@ function HomePage() {
               <Button variant='green'>.STL</Button>
               <Button variant='green'>.GLB</Button>
               <Button variant='green'>.FBX</Button>
-
             </div>
           </div>
-          <div className="h-[400px] p-4">
+          <div className="order-1 sm:order-2 h-[400px] p-4">
             <img
-              className="rounded-md border border-sky-200 shadow-lg w-full h-full object-contain"
+              className="rounded-md border border-sky-200 shadow-lg w-full h-full object-cover sm:object-contain"
               src="./explain-1.png"
             />
           </div>
@@ -61,15 +59,15 @@ function HomePage() {
       </div>
 
       <div className="p-2">
-        <div className="flex border border-sky-200 rounded-md">
+        <div className="flex flex-col sm:flex-row border border-sky-200 rounded-md">
           <div className="h-[400px] p-4">
             <img
-              className="rounded-md border border-sky-200 shadow-lg w-full h-full object-contain"
+              className="rounded-md border border-sky-200 shadow-lg w-full h-full object-cover sm:object-contain"
               src="./explain-2.png"
             />
           </div>
-          <div className="flex-1  h-[400px] text-lg flex flex-col gap-2 items-center justify-center">
-            <h1 className="text-2xl font-poppins font-semibold">
+          <div className="flex-1  h-[400px] text-lg flex flex-col gap-2 items-center justify-center m-4">
+            <h1 className="text-xl sm:text-2xl font-poppins font-semibold text-center">
               Drop pins on models and attach comments.
             </h1>
             <div className="flex gap-2 justify-center items-center">
@@ -81,19 +79,19 @@ function HomePage() {
 
 
       <div className="p-2">
-        <div className="flex border border-sky-200 rounded-md">
-          <div className="flex-1  h-[400px] text-lg flex flex-col gap-2 items-center justify-center">
-            <h1 className="text-2xl font-poppins font-semibold">
+        <div className="flex border border-sky-200 rounded-md flex-col sm:flex-row">
+          <div className="flex-1 h-[400px] order-2 sm:order-1 text-lg flex flex-col gap-2 items-center justify-center m-4">
+            <h1 className="text-xl sm:text-2xl font-poppins font-semibold text-center">
               Easy Editing! All members of the team can play.
             </h1>
             <div className="flex gap-2 justify-center items-center">
-              <p>Modelnote gives access to editing color and hiding parts of the model</p>
+              <p className="text-center">Modelnote gives access to editing color and hiding parts of the model</p>
 
             </div>
           </div>
-          <div className="h-[400px] p-4">
+          <div className="order-1 sm:order-2 h-[400px] p-4">
             <img
-              className="rounded-md border border-sky-200 shadow-lg w-full h-full object-contain"
+              className="rounded-md border border-sky-200 shadow-lg w-full h-full object-cover sm:object-contain"
               src="./explain-3.png"
             />
           </div>
@@ -101,7 +99,7 @@ function HomePage() {
       </div>
 
       <div className="w-full flex flex-col mt-12 gap-2 justify-center items-center">
-        <h1 className="text-4xl px-12 font-semibold text-center w-[900px]">
+        <h1 className="text-xl sm:text-4xl px-12 font-semibold text-center w-[900px]">
           Boost your 3D collaboration
         </h1>
         <p>3D development deserves a 3D environment </p>

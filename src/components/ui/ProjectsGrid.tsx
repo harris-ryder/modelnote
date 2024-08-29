@@ -15,7 +15,7 @@ const ProjectsGrid: FC = () => {
   }, [fetchProjects]);
 
   return (
-    <div className="mt-2 overflow-auto h-screen w-screen p-2">
+    <div className="mt-[-2] sm:mt-2 overflow-auto h-screen w-screen pt-4 p-2 sm:pt-2">
       <div className="grid gap-2 pb-24 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         {projects.map((project) => (
           <GridCell

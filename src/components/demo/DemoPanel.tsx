@@ -18,7 +18,7 @@ function DemoPanel() {
   const commentsContainer = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="relative flex mt-24 px-2 gap-2 rounded-md" style={{ height: 'calc(100% - 6.5rem)' }}>
+    <div className="relative flex flex-col sm:flex-row mt-4 sm:mt-24 px-2 gap-2 rounded-md h-full sm:h-[calc(100%-6.5rem)]">
 
 
       <div className="absolute left-2 top-2 hidden md:block w-[300px]">
@@ -36,7 +36,7 @@ function DemoPanel() {
 
 
       <Canvas
-        className="flex-4 rounded-md border border-sky-200 shadow-level2"
+        className="flex-3 rounded-md border border-sky-200 shadow-level2"
         shadows
         camera={{
           position: [0, 0, 100],
@@ -73,7 +73,7 @@ function DemoPanel() {
 
       <div className="relative flex flex-col flex-2 rounded-md bg-sky-100 shadow-level2 p-4 gap-4 border border-sky-200">
         <div className="flex flex-col gap-2">
-          <h1 className="text-4xl font-bold">Share Models</h1>
+          <h1 className="text-4xl font-bold text-center sm:text-left">Share Models</h1>
           <ul className="flex gap-2">
             <li>Upload CAD</li>
             <li>
@@ -87,11 +87,11 @@ function DemoPanel() {
           </ul>
         </div>
 
-        <div className="relative flex-1 h-full overflow-hidden">
-          <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-sky-100 to-transparent pointer-events-none"></div>
+        <div className="relative flex-1 h-24 sm:h-full overflow-hidden">
+          <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-sky-100 to-transparent pointer-events-none"></div>
           <div
             ref={commentsContainer}
-            className="h-full overflow-y-auto no-scrollbar"
+            className="h-48 sm:h-full overflow-y-auto no-scrollbar"
           >
             <DemoComment
               parent={commentsContainer}
@@ -157,7 +157,7 @@ function DemoPanel() {
               imgNum={1}
             />
           </div>
-          <div className="absolute right-0 left-0 bottom-0 h-20 bg-gradient-to-t from-sky-100 to-transparent pointer-events-none"></div>
+          <div className="absolute right-0 left-0 bottom-0 h-8 bg-gradient-to-t from-sky-100 to-transparent pointer-events-none"></div>
         </div>
       </div>
     </div>
