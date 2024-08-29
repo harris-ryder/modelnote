@@ -9,6 +9,7 @@ import TemplatePage from "./pages/template-page";
 import "./index.css";
 import TermsPage from "./pages/terms-and-conditions-page";
 import PrivacyPage from "./pages/privacy-policy-page";
+import FAQPage from "./pages/faq-page";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/template" element={<TemplatePage />} />
         <Route path="/tos" element={<TermsPage />} />
         <Route path="/privacy-policy" element={<PrivacyPage />} />
+        <Route path="/faq" element={<FAQPage />} />
         <Route path="*" element={<NoMatchPage />} />
       </Routes>
     </>

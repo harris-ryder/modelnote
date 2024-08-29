@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const TosPage: React.FC = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-sky-200 text-navy-900 p-8">
       <div className="max-w-4xl mx-auto bg-white bg-opacity-20 backdrop-blur-lg rounded-xl shadow-lg p-8">
