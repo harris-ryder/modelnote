@@ -16,6 +16,7 @@ interface ApiStoreState {
   uploadFile: (file: File) => Promise<string>;
   uploadProject: (name: string, url: string) => Promise<void>;
   updateProjectPrivacy: (projectId: string, isPublic: boolean) => Promise<void>;
+  bookmarkWelcomeProject: () => Promise<void>;
   insertWhiteListEntry: (id: string, email: string) => Promise<void>;
   deleteWhiteListEntry: (id: string) => Promise<void>;
   getProjectUpdateUI: (id: string) => Promise<void>;
@@ -41,6 +42,7 @@ export const useApiStore = create<ApiStoreState>((set, get) => ({
       console.error('Login error:', error);
     } else {
       set({ user: data?.user, userPicUrl: data?.user?.user_metadata?.picture || null });
+      get().bookmarkWelcomeProject()
     }
   },
 
@@ -63,7 +65,39 @@ export const useApiStore = create<ApiStoreState>((set, get) => ({
     console.log("Authenticated", user, get().userPicUrl);
     return user !== null;
   },
+  bookmarkWelcomeProject: async () => {
+    const createdAt = new Date(get().user.created_at);
+    const lastSignInAt = new Date(get().user.last_sign_in_at);
+    const timeDifference = Math.abs(lastSignInAt.getTime() - createdAt.getTime());
+    const isFirstTimeLogin = timeDifference <= 60000; // 60000 milliseconds = 1 minute
 
+    if (!isFirstTimeLogin) {
+      // Check if a bookmark already exists
+      const { data, error } = await supabase
+        .from("view_bookmarks")
+        .select()
+        .eq("project_id", import.meta.env.VITE_EXAMPLE_PROJECT_URL);
+
+      if (error) {
+        console.error("Error fetching bookmark:", error);
+        return;
+      }
+
+      if (data && data.length === 0) {
+        // Attempt to insert a new bookmark
+        console.log("ATTEMPTING TO INSERT!");
+        const { error: insertError } = await supabase
+          .from("bookmarks")
+          .insert({ project_id: import.meta.env.VITE_EXAMPLE_PROJECT_URL });
+
+        if (insertError) {
+          console.error("Error inserting bookmark:", insertError);
+        }
+      }
+    } else {
+      console.log("Not first time bruh")
+    }
+  },
   fetchUser: async () => {
     const { data: { user } } = await supabase.auth.getUser();
     set({ user, userPicUrl: user?.user_metadata?.avatar_url });
