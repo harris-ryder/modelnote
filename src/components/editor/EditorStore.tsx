@@ -68,7 +68,8 @@ interface EditorStoreState {
   setThumbnail: (
     gl: WebGLRenderer,
     scene: Scene,
-    camera: Camera
+    camera: Camera,
+    id: string
   ) => Promise<void>;
   subscribeToComments: (
     project_id: string
@@ -419,30 +420,28 @@ const useEditorStore = create<EditorStoreState>((set, get) => ({
       throw err; // Rethrow or handle error as appropriate for your application's structure
     }
   },
-  setThumbnail: async (gl, scene, camera) => {
-    await new Promise((resolve) => setTimeout(resolve, 8000));
-
-    const { projectData, apiGetProject } = get();
-
-    // Early return if a thumbnail URL already exists
-    if (projectData && projectData.thumbnail_url) {
-      return;
-    }
-
-    // Render the scene and take a screenshot
-    gl.render(scene, camera);
-    const screenshot = gl.domElement.toDataURL("image/jpeg");
-
+  setThumbnail: async (gl, scene, camera, id) => {
     try {
-      // Resize the image to JPEG blob before uploading
-      //const resizedBlob = await resizeBase64ImageToJPEGBlob(screenshot);
+      let projectData = await get().apiGetProject(id);
+
+      // Early return if a thumbnail URL already exists
+      if (projectData && projectData.thumbnail_url) {
+        return;
+      }
+
+      // Wait for the scene to be fully loaded
+      await new Promise((resolve) => setTimeout(resolve, 8000));
+
+      // Render the scene and take a screenshot
+      gl.render(scene, camera);
+      const screenshot = gl.domElement.toDataURL("image/jpeg");
 
       const response = await fetch(screenshot);
       const blob = await response.blob();
-      //      const resizedBlob = await resizeBase64ImageToJPEGBlob(screenshot); //to use compressor comment the two lines above!
-      const filename = `${uuidv4()}-${new Date().toISOString()}.jpeg`; // Adjusted for JPEG extension
+      const filename = `${uuidv4()}-${new Date().toISOString()}.jpeg`;
       const file = new File([blob], filename, { type: "image/jpeg" });
 
+      //      const resizedBlob = await resizeBase64ImageToJPEGBlob(screenshot); //to use compressor comment the two lines above!
       // Upload the screenshot to storage
       const { data, error: uploadError } = await supabase.storage
         .from("thumbnails")
@@ -455,14 +454,16 @@ const useEditorStore = create<EditorStoreState>((set, get) => ({
       const { error: updateError } = await supabase
         .from("projects")
         .update({ thumbnail_url: data.path })
-        .match({ id: projectData!.id });
+        .match({ id: projectData.id });
 
       if (updateError) {
         throw new Error(`Project update failed: ${updateError.message}`);
       }
 
       // Refresh project data after successful update
-      apiGetProject(projectData!.id);
+      await get().apiGetProject(projectData.id);
+
+      console.log("Thumbnail set successfully");
     } catch (error) {
       console.error("Error in setting thumbnail:", error);
     }

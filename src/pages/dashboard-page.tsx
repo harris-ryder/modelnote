@@ -35,7 +35,7 @@ function DashboardPage() {
       <Navbar
         route="Dashboard"
         buttons={[
-          { name: 'New Project', function: () => setStartProject(true), className: 'w-full sm:w-auto' },
+          { name: 'New Project', function: () => setStartProject(true), className: 'w-full sm:' },
           'logout'
         ]}
         isLoggedIn={true}
